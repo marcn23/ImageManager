@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+public struct Book{
+    var Images: [String : Image] = [:]
+    let imageNumber: Int
+    
+    init(response: APIBook){
+        for (key, value) in response.Images {
+            self.Images[key] = Image(response: value)
+        }
+        imageNumber = response.imageNumber
+    }
+}
+
