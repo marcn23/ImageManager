@@ -7,89 +7,106 @@
 
 import UIKit
 
-struct Device{
+struct Category{
     let title: String
-    let imageName: String
+    let items: [String]
 }
 
-let house = [
-    Device(title: "Laptop", imageName: "laptopcomputer"),
-    Device(title: "Mac mini", imageName: "macmini"),
-    Device(title: "Mac Pro", imageName: "macpro.gen3"),
-    Device(title: "Pantallas", imageName: "display.2"),
-    Device(title: "Apple TV", imageName: "appletv"),
-]
+struct Category2{
+    let t: String
+    let items2: [String]
+}
 
-var imatges = [String]()
-
-class ViewController: UIViewController, UITableViewDataSource {
-
+class ViewController: UIViewController {
+    
     var result = Book()
     
-    private let deviesTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        return tableView
+    private let tableView: UITableView = {
+        let table = UITableView()
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return table
     }()
     
+    var data2 = [Category2]()
+    
+    private let data: [Category] = [
+        Category(title: "Fruits", items: ["Appple", "Orange", "Banana"]),
+        Category(title: "Cars", items: ["BMW", "Mercedes", "Audi"]),
+        Category(title: "Cities", items: ["Barcelona", "Madrid", "Sevilla"])
+    ]
+    
+    
     override func viewDidLoad(){
-        var n = 0
-        //let group = DispatchGroup()
-        //group.enter()
-        let sem = DispatchSemaphore(value: 1)
+        //super.viewDidLoad()
+        /*Task{
+            result = await ImageManager().getImages()
+            print(result.imageNumber)
+            for(_, value) in result.Images{
+                self.imageView.image = await ImageManager().downloadImg(idImg: value.id)
+            }
+        }
         Task{
             //group.enter()
-            n = n+1
             result = await ImageManager().getImages()
-            let imgNumber  = result.imageNumber
-            for (key, value) in result.Images{
+            for ( _ , value) in result.Images{
                 imatges.append(value.ttl)
             }
-            print("In: ", n)
-            sem.signal()
-            //print("Number: ", imgNumber)
-            //group.leave()
-            //group.notify(queue: .main){
-               //print("End")
-            //}
-            //sem.wait()
-            //group.wait()
-            //group.leave()
-            print("Out:", n)
             print(imatges)
             print(result.imageNumber)
             super.viewDidLoad()
             // Do any additional setup after loading the view.
+
+        }*/
+        Task{
+            result = await ImageManager().getImages()
+            super.viewDidLoad()
+            view.addSubview(tableView)
+            tableView.delegate = self
+            tableView.dataSource = self
             
-            deviesTableView.backgroundColor = .blue
-            deviesTableView.dataSource = self
-            deviesTableView.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCell")
-            //deviesTableView.register(SwiftBetaCustomCell.self, forCellReuseIdentifier: "SwiftBetaCustomCell")
-            view.addSubview(deviesTableView)
+            for (key,value) in result.Images {
+                var ArrayItems = [String]()
+                ArrayItems.append("Autor: " + value.auth)
+                ArrayItems.append("Keywords: " + value.keyw)
+                ArrayItems.append("Creador: " + value.creat)
+                ArrayItems.append("Data: " + value.dateS)
+                ArrayItems.append("Filename: " + value.filen)
+                let x = Category2(t: value.ttl, items2: ArrayItems)
+                data2.append(x)
+            }
+            super.viewDidLoad()
             
-            NSLayoutConstraint.activate([
-                deviesTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                deviesTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                deviesTableView.topAnchor.constraint(equalTo: view.topAnchor),
-                deviesTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            ])
+            view.addSubview(tableView)
+            tableView.delegate = self
+            tableView.dataSource = self
+            
         }
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        imatges.count
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
+    }
+}
+
+extension ViewController:UITableViewDelegate{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let category = data2[indexPath.row]
+        
+        let vc = ListViewController (items: category.items2)
+        vc.title = category.t
+        navigationController?.pushViewController(vc, animated: true)
     }
     
+}
+extension ViewController:UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return data2.count
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
-        
-        let model = imatges[indexPath.row]
-        
-        var listContentConfiguration = UIListContentConfiguration.cell()
-        listContentConfiguration.text = model
-        
-        cell.contentConfiguration = listContentConfiguration
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = data2[indexPath.row].t
         return cell
     }
 }

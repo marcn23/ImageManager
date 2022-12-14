@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct APIImage: Codable{
     let ttl: String
@@ -35,13 +36,13 @@ public final class ImageManager: NSObject {
     let urlString: String
     
     public override init() {
-        urlString = "https://df85-93-176-139-124.eu.ngrok.io/Practica4/resources/javaee8/list"
+        urlString = "https://0cb7-37-133-181-255.eu.ngrok.io/Practica4/resources/javaee8/"
     }
     
     
     public func getImages() async -> Book {
             var n = 0
-            guard let url = URL(string: self.urlString) else{
+            guard let url = URL(string: self.urlString + "list") else{
                 return BookRecord
             }
             do{
@@ -77,6 +78,13 @@ public final class ImageManager: NSObject {
             return BookRecord
         }
 
+    public func downloadImg(idImg: String) async -> UIImage{
+        let urlM = URL(string: urlString + "getImage/" + idImg)
+        var img: UIImage
+        let (data,  _) = try! await URLSession.shared.data(from: urlM!)
+        img = UIImage(data: data)!
+        return img
+    }
 
     
     /*public func downloadImageWorkable(){ //Workable
