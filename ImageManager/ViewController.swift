@@ -15,6 +15,7 @@ struct Category{
 struct Category2{
     let t: String
     let items2: [String]
+    //let image: UIImage
 }
 
 class ViewController: UIViewController {
@@ -58,14 +59,21 @@ class ViewController: UIViewController {
 
         }*/
         Task{
-            result = await ImageManager().getImages()
+            let imgMan = ImageManager()
+            result = await imgMan.getImages()
             super.viewDidLoad()
             view.addSubview(tableView)
             tableView.delegate = self
             tableView.dataSource = self
-            
+            /*var imageData: UIImage
+            var imagesCollection = [UIImage]()
+            for(key, value) in result.Images {
+                imageData = await imgMan.downloadImg(idImg: key)
+                imagesCollection.append(imageData)
+            }*/
             for (key,value) in result.Images {
                 var ArrayItems = [String]()
+                ArrayItems.append(key)
                 ArrayItems.append("Autor: " + value.auth)
                 ArrayItems.append("Keywords: " + value.keyw)
                 ArrayItems.append("Creador: " + value.creat)
@@ -74,6 +82,7 @@ class ViewController: UIViewController {
                 let x = Category2(t: value.ttl, items2: ArrayItems)
                 data2.append(x)
             }
+            
             super.viewDidLoad()
             
             view.addSubview(tableView)

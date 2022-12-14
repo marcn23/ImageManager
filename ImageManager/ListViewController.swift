@@ -9,6 +9,12 @@ import UIKit
 
 class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    
+    private let imgView: UIImageView = {
+        let img = UIImageView()
+        return img
+    }()
+    
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -32,11 +38,23 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        view.addSubview(tableView)
-        tableView.delegate = self
-        tableView.dataSource = self
+        Task{
+            super.viewDidLoad()
+            print(items[0])
+            var imageData = await ImageManager().downloadImg(idImg: items[0])
+            let imageView = UIImageView()
+            imageView.frame = self.view.frame
+            imageView.contentMode = .scaleAspectFit
+            imageView.image = imageData
+            imageView.center = CGPoint(x: 160, y: 300)
+            self.view.addSubview(imageView)
+            print(imageData)
+            view.backgroundColor = .systemBackground
+            //view.addSubview(tableView)
+            //tableView.delegate = self
+            //tableView.dataSource = self
+        }
+
     }
     
     override func viewDidLayoutSubviews() {
