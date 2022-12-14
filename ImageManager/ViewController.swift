@@ -15,6 +15,7 @@ struct Category{
 struct Category2{
     let t: String
     let items2: [String]
+    let img: UIImage
     //let image: UIImage
 }
 
@@ -79,7 +80,8 @@ class ViewController: UIViewController {
                 ArrayItems.append("Creador: " + value.creat)
                 ArrayItems.append("Data: " + value.dateS)
                 ArrayItems.append("Filename: " + value.filen)
-                let x = Category2(t: value.ttl, items2: ArrayItems)
+                print(value.imageData)
+                let x = Category2(t: value.ttl, items2: ArrayItems, img: value.imageData)
                 data2.append(x)
             }
             
@@ -103,7 +105,7 @@ extension ViewController:UITableViewDelegate{
         tableView.deselectRow(at: indexPath, animated: true)
         let category = data2[indexPath.row]
         
-        let vc = ListViewController (items: category.items2)
+        let vc = ListViewController (items: category)
         vc.title = category.t
         navigationController?.pushViewController(vc, animated: true)
     }

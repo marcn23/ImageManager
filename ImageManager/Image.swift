@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct Image{
     let ttl: String
@@ -18,8 +19,9 @@ public struct Image{
     let filen: String
     let id: String
     let portrait: Bool
+    let imageData: UIImage
     
-    init(response: APIImage){
+    init(response: APIImage) async{
         ttl = response.ttl
         desc = response.desc
         keyw = response.keyw
@@ -30,5 +32,6 @@ public struct Image{
         filen = response.filen
         id = response.id
         portrait = response.portrait
+        imageData = await ImageManager().downloadImg(idImg: id)
     }
 }

@@ -16,9 +16,9 @@ public struct Book{
         imageNumber = 0
     }
     
-    init(response: APIBook){
+    init(response: APIBook) async{
         for (key, value) in response.Images {
-            self.Images[key] = Image(response: value)
+            self.Images[key] = await Image(response: value)
         }
         imageNumber = response.imageNumber
     }

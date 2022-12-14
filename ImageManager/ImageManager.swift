@@ -48,7 +48,7 @@ public final class ImageManager: NSObject {
             do{
                 let (data,  _) = try await URLSession.shared.data(from: url)
                 if let response = try? JSONDecoder().decode(APIBook.self, from: data){
-                    let bookResult = Book(response: response)
+                    let bookResult = await Book(response: response)
                     self.completionHandler?(bookResult)
                     self.BookRecord = bookResult
                     //print(bookResult.imageNumber)
