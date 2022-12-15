@@ -103,21 +103,35 @@ class ViewController: UIViewController {
 extension ViewController:UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let category = data2[indexPath.row]
-        
-        let vc = ListViewController (items: category)
-        vc.title = category.t
-        navigationController?.pushViewController(vc, animated: true)
+        if indexPath.row < data2.count{
+            let category = data2[indexPath.row]
+            let vc = ListViewController (items: category)
+            vc.title = category.t
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }
 extension ViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data2.count
+        return data2.count + 2
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = data2[indexPath.row].t
+        
+        if indexPath.row == data2.count {
+            cell.textLabel?.text = ""
+        }
+        else if indexPath.row == data2.count + 1 {
+            cell.textLabel?.text = "REGISTRAR NUEVA IMAGEN"
+        }
+        else {
+            //var x = indexPath.row
+            var num = String(indexPath.row)
+            var display = (num + ". " + data2[indexPath.row].t)
+            cell.textLabel?.text = display
+        }
+        cell.textLabel?.textAlignment = .center
         return cell
     }
 }

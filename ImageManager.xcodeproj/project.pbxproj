@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		507C9BFD294B8207000B93AA /* DeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C9BFC294B8207000B93AA /* DeleteViewController.swift */; };
+		507C9BFF294B8806000B93AA /* ModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C9BFE294B8806000B93AA /* ModifyViewController.swift */; };
 		D71444B029369B450095378F /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71444AF29369B450095378F /* Book.swift */; };
 		D71444B229369C710095378F /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71444B129369C710095378F /* Image.swift */; };
 		D71444B429369DBA0095378F /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71444B329369DBA0095378F /* ImageManager.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		507C9BFC294B8207000B93AA /* DeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteViewController.swift; sourceTree = "<group>"; };
+		507C9BFE294B8806000B93AA /* ModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyViewController.swift; sourceTree = "<group>"; };
 		D71444AF29369B450095378F /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		D71444B129369C710095378F /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		D71444B329369DBA0095378F /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
@@ -121,6 +125,8 @@
 				D7E626A62935561C002720FA /* Assets.xcassets */,
 				D7E626A82935561C002720FA /* LaunchScreen.storyboard */,
 				D7E626AB2935561C002720FA /* Info.plist */,
+				507C9BFC294B8207000B93AA /* DeleteViewController.swift */,
+				507C9BFE294B8806000B93AA /* ModifyViewController.swift */,
 			);
 			path = ImageManager;
 			sourceTree = "<group>";
@@ -280,6 +286,8 @@
 				D7B9A98B294A309D002CFF1F /* ListViewController.swift in Sources */,
 				D7E626A02935561A002720FA /* SceneDelegate.swift in Sources */,
 				D71444B229369C710095378F /* Image.swift in Sources */,
+				507C9BFD294B8207000B93AA /* DeleteViewController.swift in Sources */,
+				507C9BFF294B8806000B93AA /* ModifyViewController.swift in Sources */,
 				D74441BB293BC95E00EF3741 /* APIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

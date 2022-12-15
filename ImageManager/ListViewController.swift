@@ -73,18 +73,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.imageView?.image = img
             cell.imageView?.center = self.tableView.center
         }
-     /*   else if indexPath.row == 6 {
-            cell.textLabel?.text = ""
-        }
-        else if indexPath.row == 7 {
-            cell.textLabel?.text = "MODIFICAR"
-            cell.textLabel?.textAlignment = .center
-            
-        }
-        else if indexPath.row == 8 {
-            cell.textLabel?.text = "ELIMINAR"
-            cell.textLabel?.textAlignment = .center
-        }*/
         else {
             cell.textLabel?.text = items[indexPath.row]
             cell.textLabel?.textAlignment = .center
@@ -94,6 +82,28 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         print(items[indexPath.row])
+        
+        //MODIFICA
+        if indexPath.row == 7 {
+            let vc = ModifyViewController()
+            navigationController?.pushViewController(vc, animated: true)
+            
+        }
+        
+        //ELIMINA
+        if indexPath.row == 8 {
+            Task {
+                let imgMan = ImageManager()
+                var i = items[0]
+                var c = items[3]
+                c = c.replacingOccurrences(of: "Creador: ", with: "")
+                print(c)
+                //await imgMan.deleteImage(id: i, creator: c)
+            
+                let vc = DeleteViewController()
+                navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
