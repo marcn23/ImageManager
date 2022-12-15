@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		507A4751294BB1CB00DEB245 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507A4750294BB1CB00DEB245 /* RegisterViewController.swift */; };
 		507C9BFD294B8207000B93AA /* DeleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C9BFC294B8207000B93AA /* DeleteViewController.swift */; };
 		507C9BFF294B8806000B93AA /* ModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507C9BFE294B8806000B93AA /* ModifyViewController.swift */; };
 		D71444B029369B450095378F /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71444AF29369B450095378F /* Book.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		507A4750294BB1CB00DEB245 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		507C9BFC294B8207000B93AA /* DeleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteViewController.swift; sourceTree = "<group>"; };
 		507C9BFE294B8806000B93AA /* ModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyViewController.swift; sourceTree = "<group>"; };
 		D71444AF29369B450095378F /* Book.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				D7E626AB2935561C002720FA /* Info.plist */,
 				507C9BFC294B8207000B93AA /* DeleteViewController.swift */,
 				507C9BFE294B8806000B93AA /* ModifyViewController.swift */,
+				507A4750294BB1CB00DEB245 /* RegisterViewController.swift */,
 			);
 			path = ImageManager;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D71444B029369B450095378F /* Book.swift in Sources */,
+				507A4751294BB1CB00DEB245 /* RegisterViewController.swift in Sources */,
 				D7E626A22935561A002720FA /* ViewController.swift in Sources */,
 				D7E6269E2935561A002720FA /* AppDelegate.swift in Sources */,
 				D71444B429369DBA0095378F /* ImageManager.swift in Sources */,

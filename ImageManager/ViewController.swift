@@ -109,6 +109,10 @@ extension ViewController:UITableViewDelegate{
             vc.title = category.t
             navigationController?.pushViewController(vc, animated: true)
         }
+        if indexPath.row == data2.count + 1{
+            let vc2 = RegisterViewController()
+            navigationController?.pushViewController(vc2, animated: true)
+        }
     }
     
 }
@@ -122,13 +126,13 @@ extension ViewController:UITableViewDataSource{
         if indexPath.row == data2.count {
             cell.textLabel?.text = ""
         }
-        else if indexPath.row == data2.count + 1 {
+        else if indexPath.row == data2.count + 1 {
             cell.textLabel?.text = "REGISTRAR NUEVA IMAGEN"
         }
         else {
             //var x = indexPath.row
-            var num = String(indexPath.row)
-            var display = (num + ". " + data2[indexPath.row].t)
+            let num = String(indexPath.row)
+            let display = (num + ". " + data2[indexPath.row].t)
             cell.textLabel?.text = display
         }
         cell.textLabel?.textAlignment = .center
