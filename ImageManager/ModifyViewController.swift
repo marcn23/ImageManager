@@ -15,7 +15,6 @@ class ImagePickerManager: NSObject, UIImagePickerControllerDelegate, UINavigatio
     var alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
     var viewController: UIViewController?
     var pickImageCallback : ((UIImage) -> ())?;
-    var i: UIImage
     override init(){
         super.init()
         let galleryAction = UIAlertAction(title: "Gallery", style: .default){
