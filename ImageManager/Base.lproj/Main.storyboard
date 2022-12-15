@@ -18,7 +18,7 @@
                         <viewLayoutGuide key="safeArea" id="U9L-s9-qhr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Image Manager" id="yPn-gN-OVh"/>
+                    <navigationItem key="navigationItem" title="Image Manager" id="yPn-gN-OVh" colorLabel="IBBuiltInLabel-Gray"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdn-Ob-bHj" sceneMemberID="firstResponder"/>
             </objects>

@@ -86,6 +86,7 @@ class ViewController: UIViewController {
             }
             
             super.viewDidLoad()
+            self.tableView.backgroundColor = UIColor(red: 0.0, green: 0.35, blue: 0.4, alpha: 1)
             
             view.addSubview(tableView)
             tableView.delegate = self
@@ -128,6 +129,7 @@ extension ViewController:UITableViewDataSource{
         }
         else if indexPath.row == data2.count + 1 {
             cell.textLabel?.text = "REGISTRAR NUEVA IMAGEN"
+            cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16.0)
         }
         else {
             //var x = indexPath.row
@@ -136,6 +138,8 @@ extension ViewController:UITableViewDataSource{
             cell.textLabel?.text = display
         }
         cell.textLabel?.textAlignment = .center
+        cell.textLabel?.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
+        cell.backgroundColor = UIColor(red: 0.22, green: 0.55, blue: 0.60, alpha: 1)
         return cell
     }
 }

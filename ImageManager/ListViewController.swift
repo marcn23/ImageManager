@@ -51,7 +51,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.delegate = self
             tableView.dataSource = self
             //tableView.rowHeight = 100.0
-            
+            self.tableView.backgroundColor = UIColor(red: 0.0, green: 0.35, blue: 0.4, alpha: 1)
+
             items.append("")
             items.append("MODIFICA")
             items.append("ELIMINA")
@@ -76,7 +77,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         else {
             cell.textLabel?.text = items[indexPath.row]
             cell.textLabel?.textAlignment = .center
+            cell.textLabel?.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
+            
+            if (indexPath.row == 7 || indexPath.row == 8) {
+                cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16.0)
+            }
         }
+        cell.backgroundColor = UIColor(red: 0.22, green: 0.55, blue: 0.60, alpha: 1)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
