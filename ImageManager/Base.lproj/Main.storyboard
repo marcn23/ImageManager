@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
+        <!--Image Manager-->
         <scene sceneID="NRq-lc-P3g">
             <objects>
                 <viewController id="LAz-6k-LT2" customClass="ViewController" customModule="ImageManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <viewLayoutGuide key="safeArea" id="U9L-s9-qhr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="yPn-gN-OVh"/>
+                    <navigationItem key="navigationItem" title="Image Manager" id="yPn-gN-OVh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qdn-Ob-bHj" sceneMemberID="firstResponder"/>
             </objects>

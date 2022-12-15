@@ -25,6 +25,7 @@ struct APIBook: Codable{
     var Images = [String : APIImage]()
     let imageNumber: Int
 }
+
 public final class ImageManager: NSObject {
    
     var imagenes = [String]()
@@ -85,62 +86,17 @@ public final class ImageManager: NSObject {
         img = UIImage(data: data)!
         return img
     }
-
     
-    /*public func downloadImageWorkable(){ //Workable
-        let urlM = URL(string: "https://22b0-93-176-134-11.eu.ngrok.io/Practica4/resources/javaee8/getImage/1685")
+    public func deleteImage(id: String, creator: String) async{
+        let data : Data = "id=\(id)&creator=\(creator)".data(using: .utf8)!
+        let urlM = URL(string: urlString + "delete")
+        var request = URLRequest(url: urlM!)
+        request.httpMethod = "POST"
+        request.httpBody = data
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        print("Request: ", request)
         
-        let dataTask = URLSession.shared.dataTask(with: urlM!){ data, response, error in
-            if data != nil, error == nil {
-                DispatchQueue.global().async {
-                    self.imageView.image = UIImage(data: data!)
-                    print("Data will be displayed")
-                }
-            }
-        }
-        dataTask.resume()
-    }*/
+        let (APIdata, _) = try! await URLSession.shared.data(for: request)
+    }
     
-    /*
-     public func downloadImage(imgURL: URL, completion: @escaping (Data?, Error?) -> (Void)){
-         if let imageData = imageView.object(forKey: imgURL.absoluteString as NSString) {
-               print("Alredy got that Image!")
-               completion(imageData as Data, nil)
-               return
-             }
-         
-         guard let url = URL(string: imgURL) else{
-             return
-         }
-         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-             guard let data = data, error == nil else{
-                 return
-             }
-             do{
-                 //let response = try JSONSerialization.jsonObject(with:data, options: .allowFragments)
-                 //print(response)
-                 if let response = try? JSONDecoder().decode(APIBook.self, from: data){
-                     let bookResult = Book(response: response)
-                     self.completionHandler?(bookResult)
-                     print(bookResult.imageNumber)
-                     for(key,value) in bookResult.Images{
-                         print("")
-                         print("Image: " + key + ", Atributes:")
-                         print(value.ttl)
-                         print(value.desc)
-                         print(value.keyw)
-                         print(value.auth)
-                         print(value.creat)
-                         print(value.dateC)
-                         print(value.dateS)
-                         print(value.portrait)
-                         print("")
-                     }
-                 }
-             }
-         }
-         task.resume()
-         
-     }*/
-     
 }
