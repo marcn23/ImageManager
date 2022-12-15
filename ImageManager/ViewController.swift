@@ -75,8 +75,9 @@ class ViewController: UIViewController {
             for (key,value) in result.Images {
                 var ArrayItems = [String]()
                 ArrayItems.append(key)
-                ArrayItems.append("Autor: " + value.auth)
+                ArrayItems.append("Description: " + value.desc)
                 ArrayItems.append("Keywords: " + value.keyw)
+                ArrayItems.append("Autor: " + value.auth)
                 ArrayItems.append("Creador: " + value.creat)
                 ArrayItems.append("Data: " + value.dateS)
                 ArrayItems.append("Filename: " + value.filen)
@@ -84,7 +85,10 @@ class ViewController: UIViewController {
                 let x = Category2(t: value.ttl, items2: ArrayItems, img: value.imageData)
                 data2.append(x)
             }
-            
+            //var img = await ImageManager().downloadImg(idImg: "1683")
+            //await ImageManager().modifyImage(id: "1685", title: "MessiModified", description: "messiuuuu", keywords: "futbol", author: "Marc", creator: "Marc", capture: "2020-09-26", oldFilename: "2022-11-28", filename: "1685gpique.png", img: img)
+            //s0fghjklñ´ç
+            //await ImageManager().registerImage(title: "Test", description: "Test", keywords: "Test", author: "Test", creator: "Test", capture: "Test", filename: "Test.png", img: img)
             super.viewDidLoad()
             self.tableView.backgroundColor = UIColor(red: 0.0, green: 0.35, blue: 0.4, alpha: 1)
             

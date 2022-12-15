@@ -17,11 +17,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     private var items: [String]
+    private var imageTitle: String
     private let img: UIImage
     
     init(items: Category2){
         self.img = items.img
         self.items = items.items2
+        self.imageTitle = items.t
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -89,20 +91,29 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         print(items[indexPath.row])
+        print(indexPath.row)
         
         //MODIFICA
-        if indexPath.row == 7 {
+        if indexPath.row == 8 {
             let vc = ModifyViewController()
+            vc.imgId = items[0]
+            vc.imgTitle = imageTitle
+            vc.imgKeywords = items[2]
+            vc.imgDescription = items[1]
+            vc.imgCreator = items[3]
+            vc.imgAuthor = items[5]
+            vc.imgDate = items[4]
+            vc.imgFilename = items[6]
             navigationController?.pushViewController(vc, animated: true)
             
         }
         
         //ELIMINA
-        if indexPath.row == 8 {
+        if indexPath.row == 9 {
             Task {
                 let imgMan = ImageManager()
                 var i = items[0]
-                var c = items[3]
+                var c = items[4]
                 c = c.replacingOccurrences(of: "Creador: ", with: "")
                 print(c)
                 //await imgMan.deleteImage(id: i, creator: c)

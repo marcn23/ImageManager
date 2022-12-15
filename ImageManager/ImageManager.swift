@@ -26,6 +26,62 @@ struct APIBook: Codable{
     let imageNumber: Int
 }
 
+struct MultipartFormDataRequest {
+    private let boundary: String = UUID().uuidString
+    var httpBody = NSMutableData()
+    let url: URL
+    
+    init(url: URL) {
+        self.url = url
+    }
+    
+    func addTextField(named name: String, value: String) {
+        httpBody.appendString(textFormField(named: name, value: value))
+    }
+    
+    private func textFormField(named name: String, value: String) -> String {
+        var fieldString = "--\(boundary)\r\n"
+        fieldString += "Content-Disposition: form-data; name=\"\(name)\"\r\n"
+        fieldString += "Content-Type: text/plain; charset=ISO-8859-1\r\n"
+        fieldString += "Content-Transfer-Encoding: 8bit\r\n"
+        fieldString += "\r\n"
+        fieldString += "\(value)\r\n"
+        
+        return fieldString
+    }
+    
+    
+    func addDataField(fieldName: String, fileName: String, data: Data, mimeType: String) {
+        httpBody.append(dataFormField(fieldName: fieldName,fileName:fileName,data: data, mimeType: mimeType))
+    }
+    
+    private func dataFormField(fieldName: String,
+                               fileName: String,
+                               data: Data,
+                               mimeType: String) -> Data {
+        let fieldData = NSMutableData()
+        
+        fieldData.appendString("--\(boundary)\r\n")
+        fieldData.appendString("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n")
+        fieldData.appendString("Content-Type: \(mimeType)\r\n")
+        fieldData.appendString("\r\n")
+        fieldData.append(data)
+        fieldData.appendString("\r\n")
+        return fieldData as Data
+    }
+    
+    func asURLRequest() -> URLRequest {
+        var request = URLRequest(url: url)
+        
+        request.httpMethod = "POST"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        httpBody.appendString("--\(boundary)--")
+        request.httpBody = httpBody as Data
+        return request
+    }
+}
+
 public final class ImageManager: NSObject {
    
     var imagenes = [String]()
@@ -99,4 +155,57 @@ public final class ImageManager: NSObject {
         let (APIdata, _) = try! await URLSession.shared.data(for: request)
     }
     
+    public func modifyImage(id: String, title: String, description: String, keywords: String, author: String, creator: String, capture: String, oldFilename: String, filename: String, img: UIImage) async{
+        let urlM = URL(string: urlString + "modify")
+        
+        //Boundary for MultiPart POST.
+        let request = MultipartFormDataRequest(url: urlM!)
+        request.addTextField(named: "id", value: id)
+        request.addTextField(named: "title", value: title)
+        request.addTextField(named: "description", value: description)
+        request.addTextField(named: "keywords", value: keywords)
+        request.addTextField(named: "author", value: author)
+        request.addTextField(named: "creator", value: creator)
+        request.addTextField(named: "capture", value: capture)
+        request.addTextField(named: "oldFilename", value: oldFilename)
+        request.addTextField(named: "filename", value: filename)
+        request.addTextField(named: "modified", value: "true")
+        request.addDataField(fieldName: "image", fileName: oldFilename , data: img.pngData()!, mimeType: "image/*")
+        
+        let (APIdata, _) = try! await URLSession.shared.data(for: request.asURLRequest())
+    }
+    
+    public func registerImage(title: String, description: String, keywords: String, author: String, creator: String, capture: String, filename: String, img: UIImage) async{
+        let urlM = URL(string: urlString + "register")
+        
+        //Boundary for MultiPart POST.
+        let request = MultipartFormDataRequest(url: urlM!)
+        request.addTextField(named: "title", value: title)
+        request.addTextField(named: "description", value: description)
+        request.addTextField(named: "keywords", value: keywords)
+        request.addTextField(named: "author", value: author)
+        request.addTextField(named: "creator", value: creator)
+        request.addTextField(named: "capture", value: capture)
+        request.addTextField(named: "filename", value: filename)
+        request.addDataField(fieldName: "image", fileName: filename, data: img.pngData()!, mimeType: "image/*")
+        print(request)
+        let (APIdata, _) = try! await URLSession.shared.data(for: request.asURLRequest())
+    }
+}
+
+extension NSMutableData {
+    func appendString(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            self.append(data)
+        }
+    }
+}
+
+
+extension URLSession {
+    func dataTask(with request: MultipartFormDataRequest,
+                  completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void)
+    -> URLSessionDataTask {
+        return dataTask(with: request.asURLRequest(), completionHandler: completionHandler)
+    }
 }
