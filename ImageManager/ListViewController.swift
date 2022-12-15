@@ -16,12 +16,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }()
     
     
-    private let items: [String]
+    private var items: [String]
     private let img: UIImage
     
     init(items: Category2){
         self.img = items.img
         self.items = items.items2
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -50,6 +51,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             tableView.delegate = self
             tableView.dataSource = self
             //tableView.rowHeight = 100.0
+            
+            items.append("")
+            items.append("MODIFICA")
+            items.append("ELIMINA")
         }
 
     }
@@ -68,8 +73,21 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             cell.imageView?.image = img
             cell.imageView?.center = self.tableView.center
         }
+     /*   else if indexPath.row == 6 {
+            cell.textLabel?.text = ""
+        }
+        else if indexPath.row == 7 {
+            cell.textLabel?.text = "MODIFICAR"
+            cell.textLabel?.textAlignment = .center
+            
+        }
+        else if indexPath.row == 8 {
+            cell.textLabel?.text = "ELIMINAR"
+            cell.textLabel?.textAlignment = .center
+        }*/
         else {
             cell.textLabel?.text = items[indexPath.row]
+            cell.textLabel?.textAlignment = .center
         }
         return cell
     }
