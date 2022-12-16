@@ -98,12 +98,13 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             let vc = ModifyViewController()
             vc.imgId = items[0]
             vc.imgTitle = imageTitle
-            vc.imgKeywords = items[2]
-            vc.imgDescription = items[1]
+            vc.imgKeywords = items[2] .replacingOccurrences(of: "Keywords: ", with: "")
+            vc.imgDescription = items[1].replacingOccurrences(of: "Description: ", with: "")
             vc.imgCreator = items[3]
-            vc.imgAuthor = items[5]
-            vc.imgDate = items[4]
-            vc.imgFilename = items[6]
+            vc.imgAuthor = items[4].replacingOccurrences(of: "Creador: ", with: "")
+            vc.imgDate = items[5]
+            vc.imgFilename = items[6].replacingOccurrences(of: "Filename: ", with: "")
+
             navigationController?.pushViewController(vc, animated: true)
             
         }

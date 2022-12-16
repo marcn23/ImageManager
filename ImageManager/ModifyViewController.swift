@@ -106,6 +106,9 @@ class ModifyViewController: UIViewController {
     var titol: UITextField!
     var labeltitol:UILabel!
     
+    var desc: UITextField!
+    var labeldesc:UILabel!
+    
     var keywords: UITextField!
     var labelkeywords:UILabel!
     
@@ -123,64 +126,77 @@ class ModifyViewController: UIViewController {
         
         self.view.backgroundColor = UIColor(red: 0.0, green: 0.35, blue: 0.4, alpha: 1)
 
-        label = UILabel(frame: CGRect(x:60,y:175,width:500,height:50))
+        label = UILabel(frame: CGRect(x:60,y:75,width:500,height:50))
         label.text = "MODIFICAR IMAGEN"
         label.font = label.font.withSize(30)
         label.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
         view.addSubview(label)
         
-        labelautor = UILabel(frame: CGRect(x:10,y:340,width:500,height:50))
+        labelautor = UILabel(frame: CGRect(x:10,y:240,width:500,height:50))
         labelautor.text = "Autor:"
         labelautor.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
         let autor = StyledTextField()
-        autor.frame = CGRect(x: 10, y: 375, width: self.view.frame.width - 20, height: 40)
+        autor.frame = CGRect(x: 10, y: 275, width: self.view.frame.width - 20, height: 40)
         autor.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
         autor.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
+        autor.text = imgAuthor
         self.view.addSubview(autor)
         self.view.addSubview(labelautor)
         
-        labeltitol = UILabel(frame: CGRect(x:10,y:265,width:500,height:50))
-        labeltitol.text = "Autor:"
+        labeltitol = UILabel(frame: CGRect(x:10,y:165,width:500,height:50))
+        labeltitol.text = "Titol:"
         labeltitol.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
         let titol = StyledTextField()
-        titol.frame = CGRect(x: 10, y: 300, width: self.view.frame.width - 20, height: 40)
+        titol.frame = CGRect(x: 10, y: 200, width: self.view.frame.width - 20, height: 40)
         titol.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
         titol.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
+        titol.text = imgTitle
         self.view.addSubview(titol)
         self.view.addSubview(labeltitol)
         
-        labelkeywords = UILabel(frame: CGRect(x:10,y:415,width:500,height:50))
+        labelkeywords = UILabel(frame: CGRect(x:10,y:315,width:500,height:50))
         labelkeywords.text = "Keywords:"
         labelkeywords.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
         let keywords = StyledTextField()
-        keywords.frame = CGRect(x: 10, y: 450, width: self.view.frame.width - 20, height: 40)
+        keywords.frame = CGRect(x: 10, y: 350, width: self.view.frame.width - 20, height: 40)
         keywords.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
         keywords.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
+        keywords.text = imgKeywords
         self.view.addSubview(keywords)
         self.view.addSubview(labelkeywords)
         
-        labeldate = UILabel(frame: CGRect(x:10,y:505,width:500,height:50))
+        labeldate = UILabel(frame: CGRect(x:10,y:405,width:500,height:50))
         labeldate.text = "Fecha creación:"
         labeldate.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
         self.view.addSubview(labeldate)
-        date = UIDatePicker(frame: CGRect(x:45,y:515,width:100,height:50))
+        date = UIDatePicker(frame: CGRect(x:45,y:415,width:100,height:50))
         date.datePickerMode = .date
         //date.backgroundColor = UIColor.white
         //date.setValue(UIColor.white, forKey: "textColor")
         self.view.addSubview(date)
         
         
-        labelfilename = UILabel(frame: CGRect(x:10,y:545,width:500,height:50))
+        labelfilename = UILabel(frame: CGRect(x:10,y:445,width:500,height:50))
         labelfilename.text = "Nombre archivo:"
         labelfilename.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
         let filename = StyledTextField()
-        filename.frame = CGRect(x: 10, y: 580, width: self.view.frame.width - 20, height: 40)
+        filename.frame = CGRect(x: 10, y: 480, width: self.view.frame.width - 20, height: 40)
         filename.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
         filename.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
+        filename.text = imgFilename
         self.view.addSubview(filename)
         self.view.addSubview(labelfilename)
         
-        
+        labeldesc = UILabel(frame: CGRect(x:10,y:525,width:500,height:50))
+        labeldesc.text = "Descripción:"
+        labeldesc.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
+        let desc = StyledTextField()
+        desc.frame = CGRect(x: 10, y: 560, width: self.view.frame.width - 20, height: 40)
+        desc.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
+        desc.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
+        desc.text = imgDescription
+        self.view.addSubview(desc)
+        self.view.addSubview(labeldesc)
         
         button = UIButton(frame: CGRect(x:150,y:750,width:110,height:50))
         button.setTitle("MODIFICA", for: .normal)
@@ -194,18 +210,18 @@ class ModifyViewController: UIViewController {
         self.view.addSubview(labelbutton)
         view.addSubview(button)
         
-        imgpick = UIButton(frame: CGRect(x:150,y:640,width:100,height:50))
+        imgpick = UIButton(frame: CGRect(x:155,y:675,width:100,height:50))
         imgpick.setTitle("GET IMAGE", for: .normal)
         imgpick.setTitleColor(.black, for: .normal)
         imgpick.addTarget(self, action: #selector(ClickedButtonImg), for: .touchUpInside)
         let imgpicktf = StyledTextField()
-        imgpicktf.frame = CGRect(x: 150, y: 645, width: 100, height: 40)
+        imgpicktf.frame = CGRect(x: 155, y: 680, width: 100, height: 40)
         imgpicktf.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
         imgpicktf.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
         self.view.addSubview(imgpicktf)
         self.view.addSubview(imgpick)
 
-        print(imgId, " ", imgTitle, " ", imgAuthor, " ", imgCreator, " ", imgAuthor, " ", imgFilename, " ", imgDescription, " ", imgKeywords)
+       // print(imgId, " ", imgTitle, " ", imgAuthor, " ", imgCreator, " ", imgAuthor, " ", imgFilename, " ", imgDescription, " ", imgKeywords)
     }
     
     func executeModification() async{
