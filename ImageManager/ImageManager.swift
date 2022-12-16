@@ -156,6 +156,9 @@ public final class ImageManager: NSObject {
     }
     
     public func modifyImage(id: String, title: String, description: String, keywords: String, author: String, creator: String, capture: String, oldFilename: String, filename: String, img: UIImage) async{
+        
+        print (id + " " + title + " " + description + " " + keywords)
+        
         let urlM = URL(string: urlString + "modify")
         
         //Boundary for MultiPart POST.

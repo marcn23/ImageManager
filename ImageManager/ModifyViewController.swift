@@ -98,25 +98,25 @@ class ModifyViewController: UIViewController {
     var button: UIButton!
     
     var imgpick: UIButton!
-    var imgpicktf: UITextField!
+    var imgpicktf = StyledTextField()
     
-    var autor: UITextField!
+    var autor = StyledTextField()
     var labelautor:UILabel!
     
-    var titol: UITextField!
+    var titol = StyledTextField()
     var labeltitol:UILabel!
     
-    var desc: UITextField!
+    var desc = StyledTextField()
     var labeldesc:UILabel!
     
-    var keywords: UITextField!
+    var keywords = StyledTextField()
     var labelkeywords:UILabel!
     
     var labeldate:UILabel!
     var labelbutton:UILabel!
     var date: UIDatePicker!
   
-    var filename: UITextField!
+    var filename = StyledTextField()
     var labelfilename:UILabel!
     
     var imageSelected: UIImage!
@@ -136,7 +136,7 @@ class ModifyViewController: UIViewController {
             labelautor = UILabel(frame: CGRect(x:10,y:240,width:500,height:50))
             labelautor.text = "Autor:"
             labelautor.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
-            let autor = StyledTextField()
+            //let autor = StyledTextField()
             autor.frame = CGRect(x: 10, y: 275, width: self.view.frame.width - 20, height: 40)
             autor.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             autor.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
@@ -147,7 +147,7 @@ class ModifyViewController: UIViewController {
             labeltitol = UILabel(frame: CGRect(x:10,y:165,width:500,height:50))
             labeltitol.text = "Titol:"
             labeltitol.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
-            let titol = StyledTextField()
+            //let titol = StyledTextField()
             titol.frame = CGRect(x: 10, y: 200, width: self.view.frame.width - 20, height: 40)
             titol.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             titol.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
@@ -158,7 +158,7 @@ class ModifyViewController: UIViewController {
             labelkeywords = UILabel(frame: CGRect(x:10,y:315,width:500,height:50))
             labelkeywords.text = "Keywords:"
             labelkeywords.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
-            let keywords = StyledTextField()
+            //let keywords = StyledTextField()
             keywords.frame = CGRect(x: 10, y: 350, width: self.view.frame.width - 20, height: 40)
             keywords.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             keywords.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
@@ -180,7 +180,7 @@ class ModifyViewController: UIViewController {
             labelfilename = UILabel(frame: CGRect(x:10,y:445,width:500,height:50))
             labelfilename.text = "Nombre archivo:"
             labelfilename.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
-            let filename = StyledTextField()
+            //let filename = StyledTextField()
             filename.frame = CGRect(x: 10, y: 480, width: self.view.frame.width - 20, height: 40)
             filename.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             filename.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
@@ -191,7 +191,7 @@ class ModifyViewController: UIViewController {
             labeldesc = UILabel(frame: CGRect(x:10,y:525,width:500,height:50))
             labeldesc.text = "Descripción:"
             labeldesc.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
-            let desc = StyledTextField()
+            //let desc = StyledTextField()
             desc.frame = CGRect(x: 10, y: 560, width: self.view.frame.width - 20, height: 40)
             desc.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             desc.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
@@ -215,7 +215,7 @@ class ModifyViewController: UIViewController {
             imgpick.setTitle("GET IMAGE", for: .normal)
             imgpick.setTitleColor(.black, for: .normal)
             imgpick.addTarget(self, action: #selector(ClickedButtonImg), for: .touchUpInside)
-            let imgpicktf = StyledTextField()
+            //let imgpicktf = StyledTextField()
             imgpicktf.frame = CGRect(x: 155, y: 680, width: 100, height: 40)
             imgpicktf.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             imgpicktf.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
@@ -227,8 +227,14 @@ class ModifyViewController: UIViewController {
     
     @objc func executeModification(){
         Task{
-            //print(imageSelected.size)
-            await ImageManager().modifyImage(id: imgId, title: imgTitle, description: imgDescription, keywords: imgKeywords, author: imgAuthor, creator: imgCreator, capture: imgDate, oldFilename: imgFilename, filename: imgFilename, img: imageSelected)
+            let newtit = titol.text!
+            let newdesc = desc.text!
+            let newaut = autor.text!
+            let newkey = keywords.text!
+            
+            print(newtit + " " + newaut + " " + newkey + " "  + newdesc)
+            
+            await ImageManager().modifyImage(id: imgId, title: newtit, description: newdesc, keywords: newkey, author: newaut, creator: newaut, capture: imgDate, oldFilename: imgFilename, filename: imgFilename, img: imageSelected)
             let vc = ViewController()
             navigationController?.pushViewController(vc, animated: true)
         }
