@@ -155,33 +155,33 @@ class ModifyViewController: UIViewController {
             self.view.addSubview(titol)
             self.view.addSubview(labeltitol)
             
-            labeldesc = UILabel(frame: CGRect(x:10,y:525,width:500,height:50))
+            labeldesc = UILabel(frame: CGRect(x:10,y:315,width:500,height:50))
             labeldesc.text = "Descripción:"
             labeldesc.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             //let desc = StyledTextField()
-            desc.frame = CGRect(x: 10, y: 360, width: self.view.frame.width - 20, height: 40)
+            desc.frame = CGRect(x: 10, y: 350, width: self.view.frame.width - 20, height: 40)
             desc.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             desc.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
             desc.text = imgDescription
             self.view.addSubview(desc)
             self.view.addSubview(labeldesc)
             
-            labelkeywords = UILabel(frame: CGRect(x:10,y:315,width:500,height:50))
+            labelkeywords = UILabel(frame: CGRect(x:10,y:390,width:500,height:50))
             labelkeywords.text = "Keywords:"
             labelkeywords.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             //let keywords = StyledTextField()
-            keywords.frame = CGRect(x: 10, y: 550, width: self.view.frame.width - 20, height: 40)
+            keywords.frame = CGRect(x: 10, y: 425, width: self.view.frame.width - 20, height: 40)
             keywords.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             keywords.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
             keywords.text = imgKeywords
             self.view.addSubview(keywords)
             self.view.addSubview(labelkeywords)
             
-            labeldate = UILabel(frame: CGRect(x:10,y:405,width:500,height:50))
+            labeldate = UILabel(frame: CGRect(x:10,y:490,width:500,height:50))
             labeldate.text = "Fecha creación:"
             labeldate.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             self.view.addSubview(labeldate)
-            date = UIDatePicker(frame: CGRect(x:45,y:415,width:100,height:50))
+            date = UIDatePicker(frame: CGRect(x:45,y:500,width:100,height:50))
             date.datePickerMode = .date
             //date.backgroundColor = UIColor.white
             //date.setValue(UIColor.white, forKey: "textColor")
