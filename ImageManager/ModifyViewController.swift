@@ -83,6 +83,17 @@ class StyledTextField: UITextField{
 
 class ModifyViewController: UIViewController {
 
+    //Variables containing the info:
+    var imgId: String!
+    var imgTitle: String!
+    var imgDescription: String!
+    var imgKeywords: String!
+    var imgCreator: String!
+    var imgAuthor: String!
+    var imgFilename: String!
+    var imgDate: String!
+    
+    
     var label: UILabel!
     var button: UIButton!
     
@@ -105,7 +116,7 @@ class ModifyViewController: UIViewController {
     var filename: UITextField!
     var labelfilename:UILabel!
     
-    var imatgepick: UIImage!
+    var imageSelected: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -193,8 +204,14 @@ class ModifyViewController: UIViewController {
         imgpicktf.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
         self.view.addSubview(imgpicktf)
         self.view.addSubview(imgpick)
-        
-          
+
+        print(imgId, " ", imgTitle, " ", imgAuthor, " ", imgCreator, " ", imgAuthor, " ", imgFilename, " ", imgDescription, " ", imgKeywords)
+    }
+    
+    func executeModification() async{
+        Task{
+            await ImageManager().modifyImage(id: imgId, title: imgTitle, description: imgDescription, keywords: imgKeywords, author: imgAuthor, creator: imgCreator, capture: imgDate, oldFilename: imgFilename, filename: imgFilename, img: imageSelected)
+        }
     }
     
     @objc func ClickedButton(){
@@ -205,6 +222,7 @@ class ModifyViewController: UIViewController {
     @objc func ClickedButtonImg(){
 
         ImagePickerManager().pickImage(self){ image in
+            self.imageSelected = image
         }
     }
 }

@@ -59,6 +59,7 @@ class RegisterViewController: UIViewController {
         labeltitol = UILabel(frame: CGRect(x:10,y:265,width:500,height:50))
         labeltitol.text = "Autor:"
         labeltitol.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
+
         let titol = StyledTextField()
         titol.frame = CGRect(x: 10, y: 300, width: self.view.frame.width - 20, height: 40)
         titol.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
@@ -114,7 +115,8 @@ class RegisterViewController: UIViewController {
         imgpick = UIButton(frame: CGRect(x:150,y:640,width:100,height:50))
         imgpick.setTitle("GET IMAGE", for: .normal)
         imgpick.setTitleColor(.black, for: .normal)
-        imgpick.addTarget(self, action: #selector(ClickedButtonImg), for: .touchUpInside)
+        //imgpick.addTarget(self, action: #selector(ClickedButtonImg), for: .touchUpInside)
+        //imgpick.addTarget(self, action: #selector(ClickedButtonImg), for: .touchUpInside)
         let imgpicktf = StyledTextField()
         imgpicktf.frame = CGRect(x: 150, y: 645, width: 100, height: 40)
         imgpicktf.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
@@ -130,9 +132,9 @@ class RegisterViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc func ClickedButtonImg(){
+    /*@objc func ClickedButtonImg(){
 
         ImagePickerManager().pickImage(self){ image in
         }
-    }
+    }*/
 }
