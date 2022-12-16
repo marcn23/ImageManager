@@ -79,7 +79,7 @@ class ViewController: UIViewController {
                 ArrayItems.append("Keywords: " + value.keyw)
                 ArrayItems.append("Autor: " + value.auth)
                 ArrayItems.append("Creador: " + value.creat)
-                ArrayItems.append("Data: " + value.dateS)
+                ArrayItems.append("Data: " + value.dateC)
                 ArrayItems.append("Filename: " + value.filen)
                 print(value.imageData)
                 let x = Category2(t: value.ttl, items2: ArrayItems, img: value.imageData)
