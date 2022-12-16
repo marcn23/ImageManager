@@ -155,11 +155,22 @@ class ModifyViewController: UIViewController {
             self.view.addSubview(titol)
             self.view.addSubview(labeltitol)
             
+            labeldesc = UILabel(frame: CGRect(x:10,y:525,width:500,height:50))
+            labeldesc.text = "Descripción:"
+            labeldesc.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
+            //let desc = StyledTextField()
+            desc.frame = CGRect(x: 10, y: 360, width: self.view.frame.width - 20, height: 40)
+            desc.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
+            desc.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
+            desc.text = imgDescription
+            self.view.addSubview(desc)
+            self.view.addSubview(labeldesc)
+            
             labelkeywords = UILabel(frame: CGRect(x:10,y:315,width:500,height:50))
             labelkeywords.text = "Keywords:"
             labelkeywords.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             //let keywords = StyledTextField()
-            keywords.frame = CGRect(x: 10, y: 350, width: self.view.frame.width - 20, height: 40)
+            keywords.frame = CGRect(x: 10, y: 550, width: self.view.frame.width - 20, height: 40)
             keywords.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
             keywords.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
             keywords.text = imgKeywords
@@ -176,7 +187,7 @@ class ModifyViewController: UIViewController {
             //date.setValue(UIColor.white, forKey: "textColor")
             self.view.addSubview(date)
             
-            
+            /*
             labelfilename = UILabel(frame: CGRect(x:10,y:445,width:500,height:50))
             labelfilename.text = "Nombre archivo:"
             labelfilename.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
@@ -186,18 +197,8 @@ class ModifyViewController: UIViewController {
             filename.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
             filename.text = imgFilename
             self.view.addSubview(filename)
-            self.view.addSubview(labelfilename)
+            self.view.addSubview(labelfilename)*/
             
-            labeldesc = UILabel(frame: CGRect(x:10,y:525,width:500,height:50))
-            labeldesc.text = "Descripción:"
-            labeldesc.textColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
-            //let desc = StyledTextField()
-            desc.frame = CGRect(x: 10, y: 560, width: self.view.frame.width - 20, height: 40)
-            desc.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1)
-            desc.textColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1)
-            desc.text = imgDescription
-            self.view.addSubview(desc)
-            self.view.addSubview(labeldesc)
             
             button = UIButton(frame: CGRect(x:150,y:750,width:110,height:50))
             button.setTitle("MODIFICA", for: .normal)
@@ -231,10 +232,20 @@ class ModifyViewController: UIViewController {
             let newdesc = desc.text!
             let newaut = autor.text!
             let newkey = keywords.text!
+            let newfilen = filename.text!
             
-            print(newtit + " " + newaut + " " + newkey + " "  + newdesc)
+            var modified = "true"
+            //print(imageSelected.size)
+            if imageSelected == nil {
+                print("ok")
+                modified = "false"
+                imageSelected = nil
+            }
             
-            await ImageManager().modifyImage(id: imgId, title: newtit, description: newdesc, keywords: newkey, author: newaut, creator: newaut, capture: imgDate, oldFilename: imgFilename, filename: imgFilename, img: imageSelected)
+            print(imgId + " " + newtit + " " + newaut + " " + newkey + " "  + newdesc + " " +  newfilen)
+            
+            await ImageManager().modifyImage(id: imgId, title: newtit, description: newdesc, keywords: newkey, author: newaut, creator: newaut, capture: imgDate, oldFilename: imgFilename, filename: imgFilename, modified: modified, img: imageSelected)
+            
             let vc = ViewController()
             navigationController?.pushViewController(vc, animated: true)
         }

@@ -35,8 +35,8 @@ class RegisterViewController: UIViewController {
   
     var filename: UITextField!
     var labelfilename:UILabel!
-    
-    var imatgepick: UIImage!
+       
+    var imageSelected: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,6 +142,8 @@ class RegisterViewController: UIViewController {
     @objc func ClickedButtonImg(){
 
         ImagePickerManager().pickImage(self){ image in
+            self.imageSelected = image
+            print(self.imageSelected.size)
         }
     }
 }

@@ -154,11 +154,11 @@ public final class ImageManager: NSObject {
         
         let (APIdata, _) = try! await URLSession.shared.data(for: request)
     }
-    
-    public func modifyImage(id: String, title: String, description: String, keywords: String, author: String, creator: String, capture: String, oldFilename: String, filename: String, img: UIImage) async{
+
         
+    public func modifyImage(id: String, title: String, description: String, keywords: String, author: String, creator: String, capture: String, oldFilename: String, filename: String, modified: String, img: UIImage) async{
         print (id + " " + title + " " + description + " " + keywords)
-        
+
         let urlM = URL(string: urlString + "modify")
         
         //Boundary for MultiPart POST.
@@ -172,7 +172,7 @@ public final class ImageManager: NSObject {
         request.addTextField(named: "capture", value: capture)
         request.addTextField(named: "oldFilename", value: oldFilename)
         request.addTextField(named: "filename", value: filename)
-        request.addTextField(named: "modified", value: "true")
+        request.addTextField(named: "modified", value: modified)
         request.addDataField(fieldName: "image", fileName: oldFilename , data: img.pngData()!, mimeType: "image/*")
         
         let (APIdata, _) = try! await URLSession.shared.data(for: request.asURLRequest())
