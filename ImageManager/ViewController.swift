@@ -86,9 +86,10 @@ class ViewController: UIViewController {
                 data2.append(x)
             }
             //var img = await ImageManager().downloadImg(idImg: "1683")
+            //print("Image found:  ", img.size)
             //await ImageManager().modifyImage(id: "1685", title: "MessiModified", description: "messiuuuu", keywords: "futbol", author: "Marc", creator: "Marc", capture: "2020-09-26", oldFilename: "2022-11-28", filename: "1685gpique.png", img: img)
-            //s0fghjklñ´ç
-            //await ImageManager().registerImage(title: "Test", description: "Test", keywords: "Test", author: "Test", creator: "Test", capture: "Test", filename: "Test.png", img: img)
+            
+            //await ImageManager().registerImage(title: "Marc", description: "Marc", keywords: "Marc", author: "Marc", creator: "Marc", capture: "2022-12-17", filename: "Marc.png", img: img)
             super.viewDidLoad()
             self.tableView.backgroundColor = UIColor(red: 0.0, green: 0.35, blue: 0.4, alpha: 1)
             

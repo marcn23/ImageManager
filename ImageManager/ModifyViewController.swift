@@ -239,7 +239,7 @@ class ModifyViewController: UIViewController {
             if imageSelected == nil {
                 print("ok")
                 modified = "false"
-                imageSelected = nil
+                imageSelected = UIImage()
             }
             
             print(imgId + " " + newtit + " " + newaut + " " + newkey + " "  + newdesc + " " +  newfilen)

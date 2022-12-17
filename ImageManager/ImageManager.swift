@@ -93,7 +93,7 @@ public final class ImageManager: NSObject {
     let urlString: String
     
     public override init() {
-        urlString = "https://f081-37-133-181-255.eu.ngrok.io/Practica4/resources/javaee8/"
+        urlString = "https://16ca-37-133-181-255.eu.ngrok.io/Practica4/resources/javaee8/"
     }
     
     
@@ -157,9 +157,10 @@ public final class ImageManager: NSObject {
 
         
     public func modifyImage(id: String, title: String, description: String, keywords: String, author: String, creator: String, capture: String, oldFilename: String, filename: String, modified: String, img: UIImage) async{
-        print (id + " " + title + " " + description + " " + keywords)
+        print ("Mod: " + id + " " + title + " " + description + " " + keywords)
 
         let urlM = URL(string: urlString + "modify")
+        
         
         //Boundary for MultiPart POST.
         let request = MultipartFormDataRequest(url: urlM!)
@@ -173,13 +174,17 @@ public final class ImageManager: NSObject {
         request.addTextField(named: "oldFilename", value: oldFilename)
         request.addTextField(named: "filename", value: filename)
         request.addTextField(named: "modified", value: modified)
-        request.addDataField(fieldName: "image", fileName: oldFilename , data: img.pngData()!, mimeType: "image/*")
-        
+        if(modified == "true") {
+            request.addDataField(fieldName: "image", fileName: oldFilename , data: img.pngData()!, mimeType: "image/*")
+        }
         let (APIdata, _) = try! await URLSession.shared.data(for: request.asURLRequest())
     }
     
     public func registerImage(title: String, description: String, keywords: String, author: String, creator: String, capture: String, filename: String, img: UIImage) async{
         let urlM = URL(string: urlString + "register")
+        
+        print(capture)
+        print("Reg:")
         
         //Boundary for MultiPart POST.
         let request = MultipartFormDataRequest(url: urlM!)
@@ -191,8 +196,10 @@ public final class ImageManager: NSObject {
         request.addTextField(named: "capture", value: capture)
         request.addTextField(named: "filename", value: filename)
         request.addDataField(fieldName: "image", fileName: filename, data: img.pngData()!, mimeType: "image/*")
-        print(request)
+        //print(request)
+        print("Before petition:")
         let (APIdata, _) = try! await URLSession.shared.data(for: request.asURLRequest())
+        print("Petition finished")
     }
 }
 

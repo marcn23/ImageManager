@@ -96,6 +96,7 @@ class RegisterViewController: UIViewController {
         self.view.addSubview(labeldate)
         date = UIDatePicker(frame: CGRect(x:45,y:500,width:100,height:50))
         date.datePickerMode = .date
+        date.date =  .now
         //date.backgroundColor = UIColor.white
         //date.setValue(UIColor.white, forKey: "textColor")
         self.view.addSubview(date)
@@ -115,7 +116,7 @@ class RegisterViewController: UIViewController {
         button = UIButton(frame: CGRect(x:150,y:750,width:110,height:50))
         button.setTitle("CREA", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.addTarget(self, action: #selector(ClickedButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(executeInsertion), for: .touchUpInside)
 
         let labelbutton = StyledTextField()
         labelbutton.frame = CGRect(x: 150, y: 755, width: 110, height: 40)
@@ -137,9 +138,32 @@ class RegisterViewController: UIViewController {
     }
     }
     
-    @objc func ClickedButton(){
-        let vc = ViewController()
-        navigationController?.pushViewController(vc, animated: true)
+    @objc func executeInsertion(){
+        Task{
+            let newtit = titol.text!
+            let newdesc = desc.text!
+            let newaut = autor.text!
+            let newkey = keywords.text!
+            let newfilen = filename.text!
+            var newdate = date.date.ISO8601Format()
+            
+            var modified = "true"
+            //print(imageSelected.size)
+            if imageSelected == nil {
+                print("ok")
+                modified = "false"
+                imageSelected = UIImage()
+            }
+            
+            print(newtit + " " + newaut + " " + newkey + " "  + newdesc + " " +  newfilen)
+            if newdate == nil {
+                newdate = "16-12-2022"
+            }
+            await ImageManager().registerImage(title: newtit, description: newdesc, keywords: newkey, author: newaut, creator: newaut, capture: "2022-12-16", filename: newfilen, img: imageSelected)
+            
+            let vc = ViewController()
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc func ClickedButtonImg(){
