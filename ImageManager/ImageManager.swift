@@ -93,7 +93,7 @@ public final class ImageManager: NSObject {
     let urlString: String
     
     public override init() {
-        urlString = "https://16ca-37-133-181-255.eu.ngrok.io/Practica4/resources/javaee8/"
+        urlString = "https://ff98-37-133-181-255.eu.ngrok.io/Practica4/resources/javaee8/"
     }
     
     

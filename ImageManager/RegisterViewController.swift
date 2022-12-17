@@ -156,10 +156,14 @@ class RegisterViewController: UIViewController {
             }
             
             print(newtit + " " + newaut + " " + newkey + " "  + newdesc + " " +  newfilen)
-            if newdate == nil {
-                newdate = "16-12-2022"
-            }
-            await ImageManager().registerImage(title: newtit, description: newdesc, keywords: newkey, author: newaut, creator: newaut, capture: "2022-12-16", filename: newfilen, img: imageSelected)
+            print("Date: ", newdate)
+            
+            let dateFormatter = DateFormatter()
+            let dateFormated = dateFormatter.date(from: newdate)
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let resultDate = dateFormatter.string(from: date.date)
+
+            await ImageManager().registerImage(title: newtit, description: newdesc, keywords: newkey, author: newaut, creator: newaut, capture: resultDate, filename: newfilen, img: imageSelected)
             
             let vc = ViewController()
             navigationController?.pushViewController(vc, animated: true)

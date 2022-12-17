@@ -126,7 +126,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                 var c = items[4]
                 c = c.replacingOccurrences(of: "Creador: ", with: "")
                 print(c)
-                //await imgMan.deleteImage(id: i, creator: c)
+                await imgMan.deleteImage(id: i, creator: c)
             
                 let vc = DeleteViewController()
                 navigationController?.pushViewController(vc, animated: true)

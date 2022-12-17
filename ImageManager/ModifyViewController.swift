@@ -233,6 +233,7 @@ class ModifyViewController: UIViewController {
             let newaut = autor.text!
             let newkey = keywords.text!
             let newfilen = filename.text!
+            let newdate = date.date.ISO8601Format()
             
             var modified = "true"
             //print(imageSelected.size)
@@ -244,7 +245,12 @@ class ModifyViewController: UIViewController {
             
             print(imgId + " " + newtit + " " + newaut + " " + newkey + " "  + newdesc + " " +  newfilen)
             
-            await ImageManager().modifyImage(id: imgId, title: newtit, description: newdesc, keywords: newkey, author: newaut, creator: newaut, capture: imgDate, oldFilename: imgFilename, filename: imgFilename, modified: modified, img: imageSelected)
+            let dateFormatter = DateFormatter()
+            let dateFormated = dateFormatter.date(from: newdate)
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let resultDate = dateFormatter.string(from: date.date)
+            
+            await ImageManager().modifyImage(id: imgId, title: newtit, description: newdesc, keywords: newkey, author: newaut, creator: newaut, capture: resultDate, oldFilename: imgFilename, filename: imgFilename, modified: modified, img: imageSelected)
             
             let vc = ViewController()
             navigationController?.pushViewController(vc, animated: true)
